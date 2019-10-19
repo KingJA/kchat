@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="login" v-loading="isLoading">
     <div id="login_wrap">
       <el-input v-model="username" placeholder="请输入账号" class="input1"/>
       <el-input v-model="password" placeholder="请输入密码" class="input1"/>
@@ -18,6 +18,11 @@
                 username: '',
                 password: ''
             }
+        },
+        computed: {
+            ...mapState({
+                isLoading: ({loginModule}) => loginModule.isLoading
+            })
         },
         methods: {
             ...mapActions([

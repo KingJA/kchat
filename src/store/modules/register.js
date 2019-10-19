@@ -12,13 +12,13 @@ const state = {
 }
 
 const actions = {
-  login({commit},account) {
+  register({commit},account) {
     commit(SHOW_LOADING);
-    api.login(account)
+    api.register(account)
       .then(response => {
         commit(LOGIN_SUCCESS);
-        localStorage.setItem('token', response.data.data.jwt);
-        router.push({name: 'Admin'});
+        console.log("SHOW_LOADING:" + response.data.msg)
+        router.push({name: 'Login'});
       }).catch(error => {
       commit(LOGIN_FAIL, error);
     })
