@@ -12,10 +12,10 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
+      name: 'main',
+      component: Login,
       meta: {
-        title: 'HelloWorld'
+        title: '登录'
       }
     }, {
       path: '/login',

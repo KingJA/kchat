@@ -18,7 +18,7 @@ const actions = {
       .then(response => {
         commit(LOGIN_SUCCESS);
         localStorage.setItem('token', response.data.data.jwt);
-        router.push({name: 'Admin'});
+        router.push({name: 'Home'});
       }).catch(error => {
       commit(LOGIN_FAIL, error);
     })

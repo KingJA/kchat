@@ -1,34 +1,55 @@
 <template>
-  <div class="login" v-loading="isLoading">
-    <div class="layui-body">
-      <blockquote class="layui-elem-quote"></blockquote>
-      <br/> <br/>
-      <a class="layui-btn layui-btn-normal" href="http://layim.layui.com/" target="_blank">前去LayIM官网</a>
+  <div class="home">
+    <div class="message_wrap">
+      <el-row type="flex" class="row-bg">
+        <!--工具栏-->
+        <el-col :span="2">
+          <div class="tool">
 
 
-      Welcome<br/><input id="text" type="text"/>
-      <button onclick="send()">发送消息</button>
-      <hr/>
-      <input id="nickname" type="text"/>
-      <el-button type="primary" v-on:click="conectWebSocket">连接</el-button>
-      <el-button type="primary" v-on:click="closeWebSocket">断开</el-button>
-      <hr/>
-      <div id="message"></div>
+          </div>
+        </el-col>
+        <!--好友列表栏-->
+        <el-col :span="6">
+          <div class="user-list">
+
+          </div>
+        </el-col>
+        <!--聊天栏-->
+        <el-col :span="16">
+          <div class="chat">
+            <div class="message border-1px"/>
+
+            <div class="input-wrap">
+              <input v-model="message" placeholder="" class="" id="message"/>
+              <button type="primary" v-on:click="send" class="send">发送(S)</button>
+
+            </div>
+
+          </div>
+
+        </el-col>
+      </el-row>
+
+
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
     import {mapState, mapActions} from 'vuex'
-    //建立WebSocket通讯
-    var websocket = null;
+    import WebStocketSir from '@/common/js/WebStocketSir.js'
+
     export default {
         name: "login",
         data() {
             return {
-                username: '',
-                password: ''
+                message: ''
             }
+        },
+        mounted() {
+            console.log("mounted");
+            WebStocketSir.conn("333")
         },
         computed: {
             ...mapState({
@@ -39,63 +60,12 @@
             ...mapActions([
                 'login'
             ]),
-            sumbit() {
-                this.login({username: this.username, password: this.password});
-            },
-            conectWebSocket() {
-                var nickname = document.getElementById("nickname").value;
-                if (nickname === "") {
-                    alert("请输入昵称");
-                    return;
-                }
-
-
-                if ('WebSocket' in window) {
-                    websocket = new WebSocket("ws://127.0.0.1:8090/websocket/" + nickname);
-                } else {
-                    alert('当前浏览器 Not support websocket')
-                }
-
-                //连接发生错误的回调方法
-                websocket.onerror = function () {
-                    this.setMessageInnerHTML("WebSocket连接发生错误");
-                };
-
-                //连接成功建立的回调方法
-                websocket.onopen = function () {
-                    this.setMessageInnerHTML("WebSocket连接成功");
-                }
-
-                //接收到消息的回调方法
-                websocket.onmessage = function (event) {
-                    this.setMessageInnerHTML(event.data);
-                }
-
-                //连接关闭的回调方法
-                websocket.onclose = function () {
-                    this.setMessageInnerHTML("WebSocket连接关闭");
-                }
-
-                //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-                window.onbeforeunload = function () {
-                    this.closeWebSocket();
-                }
-            }
-            ,
-            //将消息显示在网页上
-            setMessageInnerHTML(innerHTML) {
-                document.getElementById('message').innerHTML += innerHTML + '<br/>';
-            },
-
-            //关闭WebSocket连接
-            closeWebSocket() {
-                websocket.close();
-            },
-
-            //发送消息
             send() {
-                var message = document.getElementById('text').value;
-                websocket.send(message);
+                WebStocketSir.send(this.message);
+                this.message = '';
+            },
+            closeWebSocket() {
+                console.log("closeWebSocket");
             }
         }
 
@@ -111,4 +81,56 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/stylus/function.styl"
   @import "../../common/stylus/color.styl"
+  @import "../../common/stylus/mixin.styl"
+  .home
+    width 70%
+    margin 0 auto
+    height 100%
+
+    .message_wrap
+      height 100%
+      border 1px solid $divider
+
+      .row-bg
+        height 100%
+
+        .tool
+          background $tool-tab
+          height 100%
+
+        .user-list
+          background $user-tab
+          height 100%
+
+        .chat
+          height 100%
+          padding 0 0 100px
+          box-sizing  border-box
+
+          .message
+            height 100%
+
+          .input-wrap
+            height 100px
+            width 100%
+            margin 0 0 -100px
+
+            #message
+              width 100%
+              height 70px
+              display block
+              background none
+              outline none
+              margin 0
+              padding 0
+              border none
+              border-1px($bg_gray)
+            .send
+              display block
+              height 30px
+              margin 0
+              padding 6px 12px 6px 12px
+              background #F5F5F5
+              border 1px solid #E5E5E5 //自定义边框
+              outline none   //消除默认点击蓝色边框效果
 </style>
