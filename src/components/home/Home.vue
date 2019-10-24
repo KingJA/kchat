@@ -129,9 +129,9 @@
 
             .send
               display block
-              height 30%
+              height 6vh
+              width  18vh
               margin 0
-              padding 6px 12px 6px 12px
               background #F5F5F5
               border 1px solid #E5E5E5 //自定义边框
               outline none   //消除默认点击蓝色边框效果
