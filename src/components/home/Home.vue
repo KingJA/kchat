@@ -20,7 +20,7 @@
           <div class="chat">
             <div class="message border-1px"/>
 
-            <div class="input-wrap">
+            <div class="input-wrap ">
               <input v-model="message" placeholder="" class="" id="message"/>
               <button type="primary" v-on:click="send" class="send">发送(S)</button>
 
@@ -85,52 +85,55 @@
   .home
     width 70%
     margin 0 auto
-    height 100%
+    height 100vh
 
     .message_wrap
-      height 100%
+      height 100vh
       border 1px solid $divider
 
       .row-bg
-        height 100%
+        height 100vh
 
         .tool
           background $tool-tab
-          height 100%
+          height 100vh
 
         .user-list
           background $user-tab
-          height 100%
+          height 100vh
 
         .chat
-          height 100%
-          padding 0 0 100px
+          height 100vh
           box-sizing  border-box
 
           .message
-            height 100%
+            height 80vh
+            border-1px($bg_gray)
 
           .input-wrap
-            height 100px
+            height 20vh
             width 100%
-            margin 0 0 -100px
+
 
             #message
               width 100%
-              height 70px
+              height 70%
               display block
               background none
               outline none
               margin 0
-              padding 0
+              padding 10px
               border none
-              border-1px($bg_gray)
+              text-align start
+              box-sizing  border-box //padding不影响宽度
+
             .send
               display block
-              height 30px
+              height 30%
               margin 0
               padding 6px 12px 6px 12px
               background #F5F5F5
               border 1px solid #E5E5E5 //自定义边框
               outline none   //消除默认点击蓝色边框效果
+              float right
 </style>

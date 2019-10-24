@@ -12,10 +12,11 @@
 
 <style>
   body {
-    height: 500px;
+    height: 100vh;
+    margin: 0;
   }
 
   #app {
-    height: 100%;
+    height: 100vh;
   }
 </style>
