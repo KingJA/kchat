@@ -6,12 +6,6 @@
         <el-col :span="2">
           <div class="tool">
 
-            <ul>
-              <li><img src="../../assets/img/head.jpg" width="36" height="36"></li>
-              <li><img src="../../assets/img/chat.png" width="36" height="36"></li>
-              <li><img src="../../assets/img/search.png" width="36" height="36"></li>
-            </ul>
-
 
           </div>
         </el-col>
