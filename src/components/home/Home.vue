@@ -7,33 +7,28 @@
           <div class="tool">
 
             <ul>
-              <li><img src="../../assets/img/head.jpg" width="36" height="36"></li>
-              <li><img src="../../assets/img/chat.png" width="36" height="36"></li>
-              <li><img src="../../assets/img/search.png" width="36" height="36"></li>
+              <!--              <li><img src="../../assets/img/head.jpg" width="36" height="36"></li>-->
+              <li class="tab">
+                <router-link to="/user">用户</router-link>
+              </li>
+              <li class="tab">
+                <router-link to="/chat">聊天</router-link>
+              </li>
+              <li class="tab">
+                <router-link to="/search">搜索</router-link>
+              </li>
             </ul>
 
 
           </div>
         </el-col>
-        <!--好友列表栏-->
-        <el-col :span="6">
-          <div class="user-list">
-
+        <!--导航内容-->
+        <el-col :span="22">
+          <div class="content">
+            <keep-alive>
+              <router-view/>
+            </keep-alive>
           </div>
-        </el-col>
-        <!--聊天栏-->
-        <el-col :span="16">
-          <div class="chat">
-            <div class="message border-1px"/>
-
-            <div class="input-wrap ">
-              <input v-model="message" placeholder="" class="" id="message"/>
-              <button type="primary" v-on:click="send" class="send">发送(S)</button>
-
-            </div>
-
-          </div>
-
         </el-col>
       </el-row>
 
@@ -103,43 +98,16 @@
         .tool
           background $tool-tab
           height 100vh
-
-        .user-list
-          background $user-tab
+          a
+            color #d4d6d9
+            display block
+            text-align center
+            line-height 40px
+            font-size 2rem
+          li
+            margin-bottom 2rem
+        .content
           height 100vh
+          background $chat-tab
 
-        .chat
-          height 100vh
-          box-sizing  border-box
-
-          .message
-            height 80vh
-            border-1px($bg_gray)
-
-          .input-wrap
-            height 20vh
-            width 100%
-
-
-            #message
-              width 100%
-              height 70%
-              display block
-              background none
-              outline none
-              margin 0
-              padding 10px
-              border none
-              text-align start
-              box-sizing  border-box //padding不影响宽度
-
-            .send
-              display block
-              height 6vh
-              width  18vh
-              margin 0
-              background #F5F5F5
-              border 1px solid #E5E5E5 //自定义边框
-              outline none   //消除默认点击蓝色边框效果
-              float right
 </style>

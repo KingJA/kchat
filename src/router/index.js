@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login/Login'
 import Register from '@/components/register/Register'
 import Home from '@/components/home/Home'
+import User from '@/components/user/User'
+import Search from '@/components/search/Search'
 
 Vue.use(Router)
 
@@ -38,8 +40,27 @@ const router = new Router({
       component: Home,
       meta: {
         title: '聊天室'
-      }
+      },
+      children: [
+         {
+          path: '/search',
+          name: 'Search',
+          component: Search,
+          meta: {
+            title: '搜索'
+          }
+        }
+        , {
+          path: '/user',
+          name: 'User',
+          component: User,
+          meta: {
+            title: '用户'
+          }
+        }
+      ]
     }
+
   ]
 })
 
