@@ -11,10 +11,12 @@
 </script>
 
 <style>
+  html{
+    font-size: 16px;
+  }
   body {
     height: 100vh;
     margin: 0;
-    font-size: 5rem;
   }
 
   #app {

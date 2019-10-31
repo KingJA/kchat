@@ -6,12 +6,29 @@ import Register from '@/components/register/Register'
 import Home from '@/components/home/Home'
 import User from '@/components/user/User'
 import Search from '@/components/search/Search'
+import create from '@/components/create/create'
+import connect from '@/components/connect/connect'
 
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/connect',
+      name: 'connect',
+      component: connect,
+      meta: {
+        title: '连接'
+      }
+    }, {
+      path: '/create',
+      name: 'create',
+      component: create,
+      meta: {
+        title: '创建'
+      }
+    },
     {
       path: '/',
       name: 'main',
@@ -42,7 +59,7 @@ const router = new Router({
         title: '聊天室'
       },
       children: [
-         {
+        {
           path: '/search',
           name: 'Search',
           component: Search,
