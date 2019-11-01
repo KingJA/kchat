@@ -5,7 +5,7 @@
       <ul>
         <li><p class="center f-b f-2">连接</p></li>
         <li>
-          <span><el-input v-model="connectcode" placeholder="请输入连接号" class="input"></el-input></span>
+          <span><el-input v-model="connectCode" placeholder="请输入连接号" class="input"></el-input></span>
         </li>
 
         <li>
@@ -25,7 +25,7 @@
         name: 'create',
         data() {
             return {
-                connectcode: '',
+                connectCode: '',
                 password: ''
 
             }

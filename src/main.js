@@ -13,6 +13,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 
 
+
 Vue.prototype.$http = Axios;
 
 Vue.config.productionTip = false
@@ -25,3 +26,23 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+
+
+
+
+// const deviceCode = () => {
+//   const localCode = window.localStorage.getItem('deviceCode')
+//   if(localCode !== undefined && localCode !== null && localCode !== ''){
+//     console.info('deviceCode:'+deviceCode)
+//     return localCode
+//   }else{
+//     new Fingerprint2().get(function(result, components) {
+//       window.localStorage.setItem('deviceCode', result)
+//       console.info('deviceCode:'+deviceCode)
+//       return result
+//     })
+//   }
+// }
+//
+// Vue.$deviceCode = Vue.prototype.$deviceCode = deviceCode

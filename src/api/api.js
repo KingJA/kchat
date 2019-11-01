@@ -1,12 +1,15 @@
 import AxiosClient from '../../static/js/http'
 
 export default {
-
-  login(account) {
-    return AxiosClient.post("/user/login", account);
+  create(data) {
+    return AxiosClient.post("/create", data);
   },
 
-  register(account) {
-    return AxiosClient.post("/user/register", account);
+  login(data) {
+    return AxiosClient.post("/user/login", data);
+  },
+
+  register(data) {
+    return AxiosClient.post("/user/register", data);
   }
 }

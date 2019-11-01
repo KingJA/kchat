@@ -46,3 +46,7 @@ export const SET_CURRENT_CATALOGID='SET_CURRENT_CATALOGID'
 export const PUBLISH='PUBLISH'
 export const PUBLISH_SUCCESS='PUBLISH_SUCCESS'
 export const PUBLISH_FAIL='PUBLISH_FAIL'
+
+//common
+export const SUCCESS='SUCCESS'
+export const FAIL='FAIL'
