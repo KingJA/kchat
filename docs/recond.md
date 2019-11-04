@@ -5,3 +5,5 @@
 输出：true 或 false   值是变量/Boolean类型
 <input disable="true">打开</input>
 输出：true   值是String类型
+
+### export default到处多个方法，导入只需1个代号

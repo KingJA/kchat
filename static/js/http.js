@@ -64,7 +64,7 @@ export default {
   post(url, data) {
     return axios({
       method: 'post',
-      // withCredentials: true,
+      withCredentials: true,
       url,
       // data: qs.stringify(data),
       data: data,
@@ -86,6 +86,7 @@ export default {
   get(url, params) {  // get
     return axios({
       method: 'get',
+      withCredentials: true,
       url,
       params, // get 请求时带的参数
       timeout: 5000,

@@ -8,6 +8,7 @@ import User from '@/components/user/User'
 import Search from '@/components/search/Search'
 import create from '@/components/create/create'
 import connect from '@/components/connect/connect'
+import chat from '@/components/chat/chat'
 
 Vue.use(Router)
 
@@ -21,12 +22,21 @@ const router = new Router({
       meta: {
         title: '连接'
       }
-    }, {
+    },
+    {
       path: '/create',
       name: 'create',
       component: create,
       meta: {
         title: '创建'
+      }
+    },
+    {
+      path: '/chat',
+      name: 'chat',
+      component: chat,
+      meta: {
+        title: '聊天'
       }
     },
     {

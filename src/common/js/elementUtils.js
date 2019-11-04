@@ -1,4 +1,4 @@
-import {MessageBox} from 'element-ui';
+import {MessageBox,Message} from 'element-ui';
 
 
 export default {
@@ -17,4 +17,11 @@ export default {
       //取消
     });
   },
+  showError( message) {
+    Message({
+      message: message,
+      center: true,
+      type: 'warning'
+    });
+  }
 }

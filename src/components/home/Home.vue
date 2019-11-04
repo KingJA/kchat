@@ -50,7 +50,7 @@
         },
         mounted() {
             console.log("mounted");
-            WebStocketSir.conn("333")
+            WebStocketSir.conn("333","4444")
         },
         computed: {
             ...mapState({

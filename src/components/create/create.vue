@@ -1,14 +1,12 @@
 <template>
-  <div class="connect" v-loading="isLoading">
-
-    <div class="connect-wrap">
+  <div class="chat" v-loading="isLoading">
+    <div class="chat-wrap">
       <ul>
         <li><p class="center f-b f-2">创建连线</p></li>
         <li>
           <span>需要密码：</span>
           <span><el-checkbox v-model="needPassword" size="medium"></el-checkbox></span>
           <span><el-input v-model="password" placeholder="请输入密码" v-if="needPassword" class="input"></el-input></span>
-
         </li>
         <li>
           <span>人数限制：</span>
@@ -22,7 +20,6 @@
         </li>
         <li class="center">
           <el-button type="primary" class="w100" v-on:click="sumbit">创建</el-button>
-
         </li>
       </ul>
     </div>
@@ -85,11 +82,11 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/css/common.css"
   @import "../../common/stylus/color.styl"
-  .connect
+  .chat
     box-sizing border-box
     padding-top 25vh
 
-    .connect-wrap
+    .chat-wrap
       width 75vw
       margin 0vh auto
       border 1px solid $border

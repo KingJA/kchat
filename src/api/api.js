@@ -1,6 +1,9 @@
 import AxiosClient from '../../static/js/http'
 
 export default {
+  connect(data) {
+    return AxiosClient.post("/connect", data);
+  },
   create(data) {
     return AxiosClient.post("/create", data);
   },

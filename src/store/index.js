@@ -9,6 +9,7 @@ import createLogger from 'vuex/dist/logger'
 import loginModule from './modules/login'
 import registerModule from './modules/register'
 import createModule from './modules/create'
+import connectModule from './modules/connect'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,7 @@ export default new Vuex.Store({
   getters,
   state,
   mutations,
-  modules: {loginModule,registerModule,createModule},
+  modules: {loginModule, registerModule, createModule, connectModule},
   strict: debug,
   plugins: debug ? [createLogger()] : []
 })
