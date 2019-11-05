@@ -18,7 +18,7 @@
         <!--聊天栏-->
         <el-col :span="16">
           <div class="chat">
-            <div class="message border-1px"/>
+            <div class="content-wrap border-1px"/>
 
             <div class="input-wrap ">
               <input v-model="message" placeholder="" class="" id="message"/>
@@ -106,7 +106,7 @@
           height 100vh
           box-sizing  border-box
 
-          .message
+          .content-wrap
             height 80vh
             border-1px($bg_gray)
 

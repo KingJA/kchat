@@ -24,7 +24,7 @@
         </el-col>
         <!--导航内容-->
         <el-col :span="22">
-          <div class="content">
+          <div class="content-wrap">
             <keep-alive>
               <router-view/>
             </keep-alive>
@@ -106,7 +106,7 @@
             font-size 2rem
           li
             margin-bottom 2rem
-        .content
+        .content-wrap
           height 100vh
           background $chat-tab
 

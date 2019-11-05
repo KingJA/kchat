@@ -17,7 +17,7 @@ const actions = {
     api.connect(data)
       .then(response => {
         commit(SUCCESS);
-        router.push({name: 'chat'});
+        router.push({name: 'chat',params: { connectId: data.connectId ,fingerprint: data.fingerprint}});
       }).catch(error => {
       commit(FAIL, error);
     })

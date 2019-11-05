@@ -13,13 +13,14 @@
 <style>
   html{
     font-size: 16px;
+    height: 100%;
   }
   body {
-    height: 100vh;
+    height: 100%;
     margin: 0;
   }
 
   #app {
-    height: 100vh;
+    height: 100%;
   }
 </style>

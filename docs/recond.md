@@ -7,3 +7,6 @@
 输出：true   值是String类型
 
 ### export default到处多个方法，导入只需1个代号
+### json和字符串互转
+JSON.stringify(obj)       将JSON对象转为字符串。
+JSON.parse(string)       将字符串转为JSON对象格式。

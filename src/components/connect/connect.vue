@@ -1,7 +1,7 @@
 <template>
-  <div class="chat" v-loading="isLoading">
+  <div class="connect" v-loading="isLoading">
 
-    <div class="chat-wrap">
+    <div class="connect-wrap">
       <ul>
         <li><p class="center f-b f-2">连接</p></li>
         <li>
@@ -74,11 +74,11 @@
 <style lang="stylus" rel="stylesheet/stylus">
   @import "../../common/css/common.css"
   @import "../../common/stylus/color.styl"
-  .chat
+  .connect
     box-sizing border-box
     padding-top 25vh
 
-    .chat-wrap
+    .connect-wrap
       width 75vw
       margin 0vh auto
       border 1px solid $border
