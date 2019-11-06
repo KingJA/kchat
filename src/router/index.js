@@ -9,6 +9,7 @@ import Search from '@/components/search/Search'
 import create from '@/components/create/create'
 import connect from '@/components/connect/connect'
 import chat from '@/components/chat/chat'
+import info from '@/components/info/info'
 
 Vue.use(Router)
 
@@ -21,6 +22,13 @@ const router = new Router({
       component: connect,
       meta: {
         title: '连接'
+      }
+    },    {
+      path: '/info',
+      name: 'info',
+      component: info,
+      meta: {
+        title: 'info'
       }
     },
     {

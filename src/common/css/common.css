@@ -19,3 +19,12 @@
 .f-3 {
   font-size: 3rem;
 }
+
+.sub-key {
+  font-size: 1.0rem;
+  color: #333333;
+}
+.sub-value {
+  font-size: 1.0rem;
+  color: #666666;
+}

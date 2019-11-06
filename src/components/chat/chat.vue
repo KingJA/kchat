@@ -3,16 +3,16 @@
     <div class="chat-wrap">
       <div class="content-wrap border-1px">
         <ul>
-          <li  v-for="message in messages" :class="message.isMyself===1?'myMessage':'otherMessage'">
+          <li v-for="message in messages" :class="message.isMyself===1?'myMessage':'otherMessage'">
             <span class="fingerprint">{{message.fingerprint.substring(0,3)+'***'+message.fingerprint.substring(message.fingerprint.length-3)}}</span>
-            <div><span  class="content">{{message.content}}</span></div>
+            <div><span class="content">{{message.content}}</span></div>
 
           </li>
         </ul>
       </div>
-      <div class="input-wrap ">
-        <textarea v-model="message" placeholder="" class="" id="message"/>
-        <button type="primary" v-on:click="send" class="send">发送(S)</button>
+      <div class="input-wrap" v-on:keyup.enter="send" >
+        <textarea v-model="message" placeholder="" class="" id="message" v-on:keyup.alt.space="KeyUpEsc"/>
+        <button type="primary" v-on:click="send" class="send">发送(Enter)</button>
       </div>
     </div>
   </div>
@@ -22,6 +22,7 @@
     import {mapState, mapActions} from 'vuex'
     import EleUI from '@/common/js/elementUtils.js'
     import WS from '@/common/js/WebStocketSir.js'
+    import Fingerprint2 from 'fingerprintjs2'
 
     export default {
         name: 'connect',
@@ -40,28 +41,21 @@
             })
         },
         mounted: function () {
-            if (typeof (this.$route.params.connectId) == "undefined" || typeof (this.$route.params.fingerprint) == "undefined") {
-                EleUI.showError('请先建立连接');
-                this.$router.push({name: 'connect'});
-                return
-            }
-            WS.conn(this.$route.params.connectId, this.$route.params.fingerprint, (event) => {
-                console.log("新收到：" + event.data)
-                let stocketBody = JSON.parse(event.data);
-                switch (stocketBody.orderType) {
-                    case 1:
-                        //消息体
-                        // document.getElementsByClassName('content')[0].innerHTML += stocketBody.content + '<br/>';
-                        this.messages.push(stocketBody);
-                        break
-                    case 2:
-                        //警告
-                        EleUI.showError(stocketBody.content)
-                        this.$router.push({name: 'connect'});
-                        break
-
+            var options = {}
+            Fingerprint2.getV18(options,  (result, components)=> {
+                this.fingerprint = result;
+                console.log(result); //a hash, representingyour device fingerprint
+                // console.log(components); // an array of FPcomponents
+                if (typeof (this.$route.query.connectId) == "undefined" || typeof (this.fingerprint) == "undefined") {
+                    EleUI.showError('请先建立连接');
+                    this.$router.push({name: 'connect'});
+                    return
                 }
+                this.connectWB();
             })
+
+
+
         },
         methods: {
             ...mapActions([
@@ -83,8 +77,31 @@
                 });
             },
             send() {
+                console.log("message：" + this.message)
                 WS.send(this.message);
                 this.message = '';
+            },
+            KeyUpEsc: function () {
+                alert("监听到esc键")
+            },
+            connectWB() {
+                console.log("数据检查fingerprint：" + this.fingerprint)
+                WS.conn(this.$route.query.connectId, this.fingerprint, (event) => {
+                    console.log("新收到：" + event.data)
+                    let stocketBody = JSON.parse(event.data);
+                    switch (stocketBody.orderType) {
+                        case 1:
+                            //消息体
+                            this.messages.push(stocketBody);
+                            break
+                        case 2:
+                            //警告
+                            EleUI.showError(stocketBody.content)
+                            this.$router.push({name: 'connect'});
+                            break
+
+                    }
+                })
             }
         }
     }
@@ -115,17 +132,21 @@
         font-size 1.5rem
         padding 1.5rem
         overflow auto
+
         li
           margin-bottom 1rem
+
           .content
             background $white
             padding 0.5rem
             display inline-block
+
           .fingerprint
             background $black
             color $white
             display inline-block
             margin-bottom 0.3rem
+
         .myMessage
           text-align end
 

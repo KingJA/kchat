@@ -17,9 +17,8 @@ const actions = {
     api.create(data)
       .then(response => {
         commit(SUCCESS);
-        // localStorage.setItem('token', response.data.data.jwt);
-        // router.push({name: 'Home'});
-        console.log("SUCCESS:" + response.data.data)
+        // console.log("SUCCESS:" + response.data.data.connectId)
+        router.push({name: 'info',params: response.data.data});
       }).catch(error => {
       commit(FAIL, error);
     })
