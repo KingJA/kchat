@@ -10,7 +10,7 @@
           </li>
         </ul>
       </div>
-      <div class="input-wrap" v-on:keyup.enter="send" >
+      <div class="input-wrap" v-on:keyup.enter="send">
         <textarea v-model="message" placeholder="" class="" id="message" v-on:keyup.alt.space="KeyUpEsc"/>
         <button type="primary" v-on:click="send" class="send">发送(Enter)</button>
       </div>
@@ -42,7 +42,7 @@
         },
         mounted: function () {
             var options = {}
-            Fingerprint2.getV18(options,  (result, components)=> {
+            Fingerprint2.getV18(options, (result, components) => {
                 this.fingerprint = result;
                 console.log(result); //a hash, representingyour device fingerprint
                 // console.log(components); // an array of FPcomponents
@@ -53,7 +53,6 @@
                 }
                 this.connectWB();
             })
-
 
 
         },
@@ -86,7 +85,7 @@
             },
             connectWB() {
                 console.log("数据检查fingerprint：" + this.fingerprint)
-                WS.conn(this.$route.query.connectId, this.fingerprint, (event) => {
+                WS.conn(this.$route.query.connectId, this.fingerprint, this.$route.params.adminCode, (event) => {
                     console.log("新收到：" + event.data)
                     let stocketBody = JSON.parse(event.data);
                     switch (stocketBody.orderType) {

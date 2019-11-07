@@ -7,13 +7,14 @@
         <li>
           <span><el-input v-model="connectId" placeholder="请输入连接号" class="input"></el-input></span>
         </li>
-
+        <li>
+          <span><el-input v-model="adminCode" placeholder="请输入标识码(如果你是创建者)" class="input"></el-input></span>
+        </li>
         <li>
           <span><el-input v-model="password" placeholder="请输入密码(没有可忽略)" class="input"></el-input></span>
         </li>
         <li class="center">
           <el-button type="primary" class="w100" v-on:click="sumbit">马上连接</el-button>
-
         </li>
       </ul>
     </div>
@@ -22,7 +23,7 @@
 
 <script>
     import {mapState, mapActions} from 'vuex'
-    import  EleUI from '@/common/js/elementUtils.js'
+    import EleUI from '@/common/js/elementUtils.js'
     import Fingerprint2 from 'fingerprintjs2'
 
     export default {
@@ -30,6 +31,7 @@
         data() {
             return {
                 fingerprint: '',
+                adminCode: '',
                 connectId: '',
                 password: ''
             }
@@ -41,7 +43,7 @@
         },
         mounted: function () {
             var options = {}
-            Fingerprint2.getV18(options,  (result, components)=> {
+            Fingerprint2.getV18(options, (result, components) => {
                 this.fingerprint = result;
                 console.log(result); //a hash, representingyour device fingerprint
                 // console.log(components); // an array of FPcomponents
@@ -63,7 +65,8 @@
                 this.connect({
                     fingerprint: this.fingerprint,
                     connectId: this.connectId,
-                    password: this.password
+                    password: this.password,
+                    adminCode: this.adminCode
                 });
             }
         }

@@ -6,7 +6,7 @@
         <li>
           <span>识别码：</span>
           <span>{{info.adminCode}}</span>
-          <p>识别号是群主的标识</p>
+          <p style="color: #999999">(识别号是群主的唯一标识，切勿透露给他人)</p>
         </li>
 
         <li>
@@ -40,39 +40,51 @@
 
 <script>
     import {mapState, mapActions} from 'vuex'
+    import EleUI from '@/common/js/elementUtils.js'
     import Fingerprint2 from 'fingerprintjs2'
-
     export default {
         name: 'create',
         data() {
             return {
                 info: {},
-                location:''
+                location:'',
+                fingerprint:''
 
             }
 
         },
         computed: {
             ...mapState({
-                isLoading: ({createModule}) => createModule.isLoading
+                isLoading: ({connectModule}) => connectModule.isLoading
             })
         },
         mounted: function () {
+            if (typeof (this.$route.params.connectId) == "undefined") {
+                EleUI.showError('请先建立连接');
+                this.$router.push({name: 'connect'});
+                return
+            }
             this.info = this.$route.params;
             this.location=location.host;
+
+            var options = {}
+            Fingerprint2.getV18(options, (result, components) => {
+                this.fingerprint = result;
+                console.log('fingerprint:'+result); //a hash, representingyour device fingerprint
+                // console.log(components); // an array of FPcomponents
+            })
         },
 
         methods: {
             ...mapActions([
-                'create'
+                'connect'
             ]),
             sumbit() {
-                this.create({
-                    password: this.password,
-                    maxCount: this.maxCount,
-                    needLimitCount: this.needLimitCount,
-                    needCheck: this.needCheck,
-                    fingerprint: this.fingerprint
+                this.connect({
+                    fingerprint: this.fingerprint,
+                    connectId: this.info.connectId,
+                    password: this.info.password,
+                    adminCode: this.info.adminCode
                 });
             }
         }

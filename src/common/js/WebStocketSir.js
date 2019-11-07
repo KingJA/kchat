@@ -1,9 +1,9 @@
 class WebStocketSir {
 
 
-  conn(connectId, fingerprint,callback) {
+  conn(connectId, fingerprint,adminCode,callback) {
     if ('WebSocket' in window) {
-      this.websocket = new WebSocket("ws://127.0.0.1:8090/websocket/" + connectId + "/" + fingerprint);
+      this.websocket = new WebSocket("ws://127.0.0.1:8090/websocket/" + connectId + "/" + fingerprint+ "/" + adminCode);
       console.log("支持websocket")
     } else {
       alert('当前浏览器 Not support websocket')
