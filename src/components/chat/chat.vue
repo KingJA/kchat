@@ -4,7 +4,8 @@
       <div class="content-wrap border-1px">
         <ul>
           <li v-for="message in messages" :class="message.isMyself===1?'myMessage':'otherMessage'">
-            <span class="fingerprint">{{message.fingerprint.substring(0,3)+'***'+message.fingerprint.substring(message.fingerprint.length-3)}}</span>
+            <span :class="{'fingerprint':true,'isAdmin':message.isAdmin===1}">{{message.fingerprint.substring(0,3)+'***'+message.fingerprint.substring(message.fingerprint.length-3)}}</span>
+<!--                        <span :class="{'icon-thumb_up':rating.rateType===0,'icon-thumb_down':rating.rateType===1}"></span>{{rating.text}}-->
             <div><span class="content">{{message.content}}</span></div>
 
           </li>
@@ -98,6 +99,11 @@
                             EleUI.showError(stocketBody.content)
                             this.$router.push({name: 'connect'});
                             break
+                        case 3:
+                            //警告
+                            EleUI.showError(stocketBody.content)
+                            this.$router.push({name: 'connect'});
+                            break
 
                     }
                 })
@@ -145,6 +151,8 @@
             color $white
             display inline-block
             margin-bottom 0.3rem
+          .isAdmin
+            background $red
 
         .myMessage
           text-align end

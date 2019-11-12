@@ -62,6 +62,9 @@
                     EleUI.showError('连接号格式错误')
                     return
                 }
+                if (typeof (this.adminCode) == "undefined" || this.adminCode === "") {
+                    this.adminCode='000000';
+                }
                 this.connect({
                     fingerprint: this.fingerprint,
                     connectId: this.connectId,
