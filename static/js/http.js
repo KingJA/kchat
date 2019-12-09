@@ -5,7 +5,8 @@ import {Message} from 'element-ui';
 
 // 这里的config包含每次请求的内容
 axios.interceptors.request.use(config => {
- let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8090/' : 'http://47.95.243.144:8080/blog';
+ // let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : 'http://47.95.243.144:8080/blog'; //测试：发布
+ let apiUrl = process.env.NODE_ENV === 'development' ? 'api' : 'http://13.231.99.2:8080/chat';
   // config.withCredentials = true;
   config.baseURL = apiUrl;
   if (localStorage.getItem('token')) {
