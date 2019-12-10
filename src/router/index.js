@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login/Login'
 import Register from '@/components/register/Register'
-import Home from '@/components/home/Home'
 import User from '@/components/user/User'
 import Search from '@/components/search/Search'
 import create from '@/components/create/create'
@@ -49,11 +48,7 @@ const router = new Router({
     },
     {
       path: '/',
-      name: 'main',
-      component: Login,
-      meta: {
-        title: '登录'
-      }
+      redirect: { name: 'create' }
     }, {
       path: '/login',
       name: 'Login',
@@ -69,33 +64,7 @@ const router = new Router({
       meta: {
         title: '注册'
       }
-    }, {
-      path: '/home',
-      name: 'Home',
-      component: Home,
-      meta: {
-        title: '聊天室'
-      },
-      children: [
-        {
-          path: '/search',
-          name: 'Search',
-          component: Search,
-          meta: {
-            title: '搜索'
-          }
-        }
-        , {
-          path: '/user',
-          name: 'User',
-          component: User,
-          meta: {
-            title: '用户'
-          }
-        }
-      ]
     }
-
   ]
 })
 

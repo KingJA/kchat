@@ -15,6 +15,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 
 Vue.prototype.$http = Axios;
+Vue.prototype.$baseUrl = process.env.API_ROOT
+Vue.prototype.$websocketUrl = process.env.WEBSOCKET_URL
 
 Vue.config.productionTip = false
 

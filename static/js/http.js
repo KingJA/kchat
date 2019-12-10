@@ -6,9 +6,9 @@ import {Message} from 'element-ui';
 // 这里的config包含每次请求的内容
 axios.interceptors.request.use(config => {
  // let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : 'http://47.95.243.144:8080/blog'; //测试：发布
- let apiUrl = process.env.NODE_ENV === 'development' ? 'api' : 'http://13.231.99.2:8080/chat';
+ // let apiUrl = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080/' : 'http://13.231.99.2:8080/chat';
   // config.withCredentials = true;
-  config.baseURL = apiUrl;
+  config.baseURL = process.env.API_ROOT;
   if (localStorage.getItem('token')) {
     config.headers.token = `${localStorage.getItem('token')}`;
   }
@@ -65,7 +65,7 @@ export default {
   post(url, data) {
     return axios({
       method: 'post',
-      withCredentials: true,
+      withCredentials: false,
       url,
       // data: qs.stringify(data),
       data: data,
@@ -87,7 +87,7 @@ export default {
   get(url, params) {  // get
     return axios({
       method: 'get',
-      withCredentials: true,
+      withCredentials: false,
       url,
       params, // get 请求时带的参数
       timeout: 5000,

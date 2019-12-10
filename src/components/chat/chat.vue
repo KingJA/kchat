@@ -86,7 +86,7 @@
             },
             connectWB() {
                 console.log("数据检查fingerprint：" + this.fingerprint)
-                WS.conn(this.$route.query.connectId, this.fingerprint, this.$route.params.adminCode, (event) => {
+                WS.conn(this.$websocketUrl,this.$route.query.connectId, this.fingerprint, this.$route.params.adminCode, (event) => {
                     console.log("新收到：" + event.data)
                     let stocketBody = JSON.parse(event.data);
                     switch (stocketBody.orderType) {
